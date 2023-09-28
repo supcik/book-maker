@@ -1,0 +1,25 @@
+source_dir = "book"
+build_dir = "build"
+
+[variables]
+
+[tool.preprocessor]
+assets = ["**/*.pdf", "**/*.svg", "**/*.png", "**/*.jpg", "**/*.jpeg"]
+
+[tools.drawio]
+args = ["--export", "--crop"]
+source = ["**/*.drawio"]
+transformer = "lambda x: Path(x).with_suffix('.pdf')"
+
+[tools.latexmk]
+args = ["-xelatex", "-quiet"]
+
+[tools.pandoc]
+args = [
+    "--from=markdown",
+    "--table-of-contents",
+    "--template=eisvogel.tex",
+    "--number-sections",
+    "--filter=pandoc-latex-environment",
+    "--resource-path=.:..",
+]

@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "book-maker"
+version = "0.1.0"
+description = ""
+authors = ["Jacques Supcik <jacques.supcik@hefr.ch>"]
+license = "Apache-2"
+readme = "README.md"
+include = ["book.toml", "eisvogel.tex", "book_maker/*.toml", "fonts/*"]
+packages = [{ include = "book_maker" }]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+click = "^8.1.7"
+jinja2 = "^3.1.2"
+colorlog = "^6.7.0"
+psutil = "^5.9.5"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+book-maker = 'book_maker.main:cli'
+
+[tool.ruff]
+select = ["E", "F", "B", "Q", "N", "I", "UP", "PL", "RUF", "C90"]

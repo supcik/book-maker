@@ -1,10 +1,11 @@
 [tool.poetry]
 name = "isc-book-maker"
-version = "0.1.2"
+version = "0.1.3"
 description = ""
 authors = ["Jacques Supcik <jacques.supcik@hefr.ch>"]
 license = "Apache-2"
 readme = "README.md"
+repository = "https://github.com/supcik/isc-book-maker"
 include = ["book.toml", "eisvogel.tex", "isc_book_maker/*.toml"]
 packages = [{ include = "isc_book_maker" }]
 
@@ -14,6 +15,7 @@ click = "^8.1.7"
 jinja2 = "^3.1.2"
 colorlog = "^6.7.0"
 psutil = "^5.9.5"
+deepmerge = "^1.1.0"
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.0.292"

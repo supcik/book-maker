@@ -13,25 +13,17 @@
 
 import importlib.metadata
 import logging
+import pprint
 from pathlib import Path
 
 import click
 import colorlog
 import tomllib
+from deepmerge import Merger
 
 from . import clean, imgprocessor, latex_runner, pandoc_runner, preprocessor, util
 
 __version__ = importlib.metadata.version("isc-book-maker")
-
-
-def merge(src, dst):
-    for key, value in src.items():
-        if isinstance(value, dict):
-            node = dst.setdefault(key, {})
-            merge(value, node)
-        else:
-            dst[key] = value
-    return dst
 
 
 @click.group(invoke_without_command=True)
@@ -75,8 +67,21 @@ def cli(ctx, debug, quiet, version, config):
     default["tools"]["pandoc"]["bin"] = util.which_pandoc()
     default["tools"]["latexmk"]["bin"] = util.which_latexmk()
 
+    merger = Merger(
+        [
+            (dict, ["merge"]),
+        ],
+        ["override"],
+        ["override"],
+    )
+
     with open(config, "rb") as f:
-        ctx.obj["CONFIG"] = merge(default, tomllib.load(f))
+        merger.merge(default, tomllib.load(f))
+        ctx.obj["CONFIG"] = default
+
+    logging.debug("Configuration:")
+    for i in pprint.pformat(ctx.obj["CONFIG"]).split("\n"):
+        logging.debug(i)
 
 
 cli.add_command(preprocessor.pp)

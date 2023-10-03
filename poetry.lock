@@ -54,6 +54,17 @@ colorama = {version = "*", markers = "sys_platform == \"win32\""}
 development = ["black", "flake8", "mypy", "pytest", "types-colorama"]
 
 [[package]]
+name = "deepmerge"
+version = "1.1.0"
+description = "a toolset to deeply merge python dictionaries."
+optional = false
+python-versions = "*"
+files = [
+    {file = "deepmerge-1.1.0-py3-none-any.whl", hash = "sha256:59e6ef80b77dc52af3882a1ea78da22bcfc91ae9cdabc0c80729049fe295ff8b"},
+    {file = "deepmerge-1.1.0.tar.gz", hash = "sha256:4c27a0db5de285e1a7ceac7dbc1531deaa556b627dea4900c8244581ecdfea2d"},
+]
+
+[[package]]
 name = "distlib"
 version = "0.3.7"
 description = "Distribution utilities"
@@ -357,4 +368,4 @@ test = ["covdefaults (>=2.3)", "coverage (>=7.2.7)", "coverage-enable-subprocess
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "13b0c77d498eeb8e1d713c50c127464386eaec436c36252a05c019fb98c8efbb"
+content-hash = "ae39e1e177cd9f79c544268d21e7c6f5babcaec0a7d50b7bce9aee2286249a07"

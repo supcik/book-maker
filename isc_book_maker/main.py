@@ -13,11 +13,11 @@
 
 import importlib.metadata
 import logging
-import tomllib
 from pathlib import Path
 
 import click
 import colorlog
+import tomllib
 
 from . import clean, imgprocessor, latex_runner, pandoc_runner, preprocessor, util
 

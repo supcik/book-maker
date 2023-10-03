@@ -7,14 +7,17 @@ build_dir = "build"
 assets = ["**/*.pdf", "**/*.svg", "**/*.png", "**/*.jpg", "**/*.jpeg"]
 
 [tools.drawio]
+#bin = "..." # path to drawio executable will be searched in PATH if not set
 args = ["--export", "--crop"]
 source = ["**/*.drawio"]
 transformer = "lambda x: Path(x).with_suffix('.pdf')"
 
 [tools.latexmk]
+#bin = "..." # path to latexmk executable will be searched in PATH if not set
 args = ["-xelatex", "-quiet"]
 
 [tools.pandoc]
+#bin = "..." # path to pandoc executable will be searched in PATH if not set
 args = [
     "--from=markdown",
     "--table-of-contents",

@@ -1,2 +1,36 @@
+# source_dir = "book"
+# build_dir = "build"
+#
 [variables]
 lorem = "ipsum"
+#
+# ----- Preprocessor -----
+#[tool.preprocessor]
+#
+# assets = ["**/*.pdf", "**/*.svg", "**/*.png", "**/*.jpg", "**/*.jpeg"]
+#
+# ----- DrawIO -----
+#[tools.drawio]
+#
+# bin = "..." # path to drawio executable will be searched in PATH if not set
+# args = ["--export", "--crop"]
+# source = ["**/*.drawio"]
+# transformer = "lambda x: Path(x).with_suffix('.pdf')"
+#
+# ----- latexmk -----
+# [tools.latexmk]
+#
+# bin = "..." # path to latexmk executable will be searched in PATH if not set
+# args = ["-xelatex", "-quiet"]
+#
+# ----- Pandoc -----
+# [tools.pandoc]
+# bin = "..." # path to pandoc executable will be searched in PATH if not set
+# args = [
+#     "--from=markdown",
+#     "--table-of-contents",
+#     "--template=eisvogel.tex",
+#     "--number-sections",
+#     "--filter=pandoc-latex-environment",
+#     "--resource-path=.:..",
+# ]

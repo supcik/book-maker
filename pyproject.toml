@@ -1,12 +1,12 @@
 [tool.poetry]
-name = "book-maker"
-version = "0.1.0"
+name = "isc-book-maker"
+version = "0.1.1"
 description = ""
 authors = ["Jacques Supcik <jacques.supcik@hefr.ch>"]
 license = "Apache-2"
 readme = "README.md"
-include = ["book.toml", "eisvogel.tex", "book_maker/*.toml", "fonts/*"]
-packages = [{ include = "book_maker" }]
+include = ["book.toml", "eisvogel.tex", "isc_book_maker/*.toml"]
+packages = [{ include = "isc_book_maker" }]
 
 [tool.poetry.dependencies]
 python = "^3.11"
@@ -20,7 +20,7 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-book-maker = 'book_maker.main:cli'
+book-maker = 'isc_book_maker.main:cli'
 
 [tool.ruff]
 select = ["E", "F", "B", "Q", "N", "I", "UP", "PL", "RUF", "C90"]

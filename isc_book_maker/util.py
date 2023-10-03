@@ -16,6 +16,7 @@ import platform
 import shutil
 import subprocess
 import sys
+import time
 
 import psutil
 
@@ -74,7 +75,8 @@ class Xvfb:
         if self.process is not None and not force:
             return
 
-        for proc in psutil.process_iter(["pid", "name"]):
+        self.process = None
+        for proc in psutil.process_iter(["pid", "name", "cmdline"]):
             if proc.info["name"] == "Xvfb":
                 self.process = proc
 
@@ -102,7 +104,7 @@ class Xvfb:
             logger.debug("Xvfb is already running (PID = %d)", self.pid())
             return
         logger.info("Starting Xvfb")
-        subprocess.run(["Xvfb", ":42", "-screen", "0", "1024x768x24"], check=True)
+        subprocess.Popen(["Xvfb", ":42", "-screen", "0", "1024x768x24"])
         self.__get_process(force=True)
         if not self.is_running():
             logger.fatal("Failed to start Xvfb")
@@ -116,7 +118,7 @@ class Xvfb:
             return
         logger.info("Stopping Xvfb (PID = %d)", self.pid())
         self.process.terminate()
-        self.process.wait(10)
+        self.process.wait()
         self.__get_process(force=True)
         if not self.is_running():
             logger.debug("Xvfb stopped")

@@ -21,7 +21,7 @@ import tomllib
 
 from . import clean, imgprocessor, latex_runner, pandoc_runner, preprocessor, util
 
-__version__ = importlib.metadata.version("book-maker")
+__version__ = importlib.metadata.version("isc-book-maker")
 
 
 @click.group(invoke_without_command=True)

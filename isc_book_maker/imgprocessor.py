@@ -33,6 +33,7 @@ stderr_filter = [
     "extension not supported",
     "Failed to send GpuControl.CreateCommandBuffer",
     "Init observer found at shutdown",
+    "Failed to call method: org.freedesktop.portal.Settings.Read:",
 ]
 
 stdout_filter = [
@@ -54,9 +55,8 @@ def do_image_processor(  # noqa: C901
 
     xvfb = None
     if platform.system() == "Linux":
-        if os.getuid() == 0 and "--no-sandbox" not in drawio_args:
-            drawio_args.append("--no-sandbox")
         if os.getenv("DISPLAY") is None:
+            logger.info("Starting xvfb")
             xvfb = util.Xvfb()
             xvfb.start()
             os.environ["DISPLAY"] = ":42"
@@ -76,7 +76,15 @@ def do_image_processor(  # noqa: C901
 
             os.makedirs(dest.parent, exist_ok=True)
             logger.info(f"Converting {f} -> {dest}")
+
+            # WARNING: the current version of drawio requires that the "--no-sandbox"
+            # option is passed after the input file name. So we have to remove it
+            # from the arguments and add it back after the input file name.
+            needs_no_sandbox = "--no-sandbox" in drawio_args
+            drawio_args = [i for i in drawio_args if i != "--no-sandbox"]
             cmd = [drawio_bin, *drawio_args, "-o", str(dest), str(f)]
+            if needs_no_sandbox or (platform.system() == "Linux" and os.getuid() == 0):
+                cmd.append("--no-sandbox")
             logger.debug(f"Command = {' '.join(cmd)}")
             res = subprocess.run(cmd, capture_output=True, text=True, check=False)
             for line in util.filtered_lines(

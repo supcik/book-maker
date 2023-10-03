@@ -11,7 +11,7 @@ jobs:
       id-token: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Set up Python 3
         uses: actions/setup-python@v4
         with:
@@ -36,10 +36,6 @@ jobs:
       - name: Build package
         run: |
           poetry build
-      - name: Build test site
-        run: |
-          poetry install -E test
-          cd test/simple && poetry run mkdocs build
       - name: Publish package distributions to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')

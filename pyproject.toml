@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "isc-book-maker"
-version = "0.1.1"
+version = "0.1.2"
 description = ""
 authors = ["Jacques Supcik <jacques.supcik@hefr.ch>"]
 license = "Apache-2"

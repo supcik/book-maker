@@ -5,12 +5,12 @@
 lorem = "ipsum"
 #
 # ----- Preprocessor -----
-#[tool.preprocessor]
+# [tool.preprocessor]
 #
 # assets = ["**/*.pdf", "**/*.svg", "**/*.png", "**/*.jpg", "**/*.jpeg"]
 #
 # ----- DrawIO -----
-#[tools.drawio]
+# [tools.drawio]
 #
 # bin = "..." # path to drawio executable will be searched in PATH if not set
 # args = ["--export", "--crop"]

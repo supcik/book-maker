@@ -17,6 +17,7 @@ psutil = "^5.9.5"
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.0.292"
+pre-commit = "^3.4.0"
 
 [build-system]
 requires = ["poetry-core"]
